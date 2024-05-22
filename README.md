@@ -58,3 +58,19 @@ python app.py
 3. Register a new user or log in with an existing account.
 4. If you have an admin account, you can create new tasks, mark tasks as completed, and delete tasks.
 5. If you have a regular user account, you can view tasks and mark them as completed.
+
+
+## Working
+
+User Page
+![user](https://github.com/AdiSid0309/Techdome_Assignment/assets/50744962/e97a3e0d-ab5c-4d6f-81c6-d724e80a89d8)
+
+Register PAge
+![register](https://github.com/AdiSid0309/Techdome_Assignment/assets/50744962/8d8bcd79-a52d-4b8b-b80c-0c9790634eb5)
+
+Login Page
+![login](https://github.com/AdiSid0309/Techdome_Assignment/assets/50744962/8a21be48-db09-4551-8563-76c734a840e4)
+
+Admin Page
+![admin](https://github.com/AdiSid0309/Techdome_Assignment/assets/50744962/5e9eecec-e4b9-4afc-968e-8e8bb6490e05)
+
