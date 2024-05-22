@@ -1,15 +1,19 @@
+# Import necessary modules
 from flask import Flask, render_template, redirect, url_for, request, jsonify, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
+# Generate a secure secret key
 key = secrets.token_urlsafe(16)
 
+# Initialize the Flask app
 app = Flask(__name__, static_folder='static')
 app.secret_key = key
 
 # Flask-Login setup
+# Initialize the LoginManager instance
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -22,7 +26,7 @@ class User(UserMixin):
         self.password = password
         self.role = role
 
-# Load user
+# Load user for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     with sqlite3.connect('todo.db') as conn:
@@ -37,6 +41,7 @@ def load_user(user_id):
 def init_db():
     with sqlite3.connect('todo.db') as conn:
         cursor = conn.cursor()
+        # Create tasks table if it doesn't exist
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS tasks (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,6 +49,7 @@ def init_db():
                 completed BOOLEAN NOT NULL CHECK (completed IN (0, 1))
             )
         ''')
+        # Create users table if it doesn't exist
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -54,13 +60,16 @@ def init_db():
         ''')
         conn.commit()
 
+# Initialize the database
 init_db()
 
+# Route for the index page
 @app.route('/')
 @login_required
 def index():
     return render_template('index.html', role=current_user.role)
 
+# Route for the login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -77,6 +86,7 @@ def login():
             flash('Invalid username or password')
     return render_template('login.html')
 
+# Route for the registration page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -94,12 +104,14 @@ def register():
                 flash('Username already exists.')
     return render_template('register.html')
 
+# Route for logging out
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
+# Route for adding a new task (accessible only to admins)
 @app.route('/add_task', methods=['POST'])
 @login_required
 def add_task():
@@ -117,7 +129,7 @@ def add_task():
 
     return get_tasks()
 
-
+# Route for retrieving all tasks
 @app.route('/tasks', methods=['GET'])
 @login_required
 def get_tasks():
@@ -128,10 +140,10 @@ def get_tasks():
     tasks_list = [{'id': row[0], 'content': row[1], 'completed': bool(row[2])} for row in tasks]
     return jsonify(tasks_list)
 
+# Route for marking a task as completed
 @app.route('/complete_task', methods=['POST'])
 @login_required
 def complete_task():
-
     task_id = request.json['id']
     with sqlite3.connect('todo.db') as conn:
         cursor = conn.cursor()
@@ -139,6 +151,7 @@ def complete_task():
         conn.commit()
     return get_tasks()
 
+# Route for deleting a task (accessible only to admins)
 @app.route('/delete_task', methods=['POST'])
 @login_required
 def delete_task():
@@ -152,5 +165,6 @@ def delete_task():
         conn.commit()
     return get_tasks()
 
+# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
