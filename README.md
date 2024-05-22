@@ -57,14 +57,3 @@ python app.py
 3. Register a new user or log in with an existing account.
 4. If you have an admin account, you can create new tasks, mark tasks as completed, and delete tasks.
 5. If you have a regular user account, you can view tasks and mark them as completed.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-```
-
-This README file provides an overview of the ToDo App, its features, prerequisites, installation instructions, usage guidelines, and information on contributing and licensing. Feel free to modify it according to your needs.
