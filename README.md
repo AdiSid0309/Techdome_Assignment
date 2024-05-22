@@ -24,7 +24,7 @@ role-based access control, where admins can create, delete, and mark tasks as co
 
 
 ```
-git clone https://github.com/your-username/todo-app.git
+git clone https://github.com/AdiSid0309/todo-app.git
 ```
 
 2. Navigate to the project directory:
