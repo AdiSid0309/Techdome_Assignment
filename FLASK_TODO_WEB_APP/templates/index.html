@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TO-DO List</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body class="bg-gradient" data-role="{{ role }}">
+    <div class="container mt-5">
+      <div id="todo-container" class="card shadow-lg">
+        <div id="header" class="card-header bg-primary text-white">
+          <h1 class="card-title text-center">To Do List</h1>
+        </div>
+        <div id="todo-form" class="card-body">
+          {% if role == 'admin' %}
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="input_box"
+              id="input-box"
+              placeholder="Add Task"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-primary" id="input-button" onclick="addTask()">Add</button>
+            </div>
+          </div>
+          {% endif %}
+          <h2 class="card-title">Task List</h2>
+          <ul id="list-container" class="list-group"></ul>
+        </div>
+        <div class="card-footer">
+          <div id="task-counters" class="text-center">
+            Completed: <span id="completed-counter">0</span> | Uncompleted:
+            <span id="uncompleted-counter">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  </body>
+</html>
