@@ -23,26 +23,26 @@ role-based access control, where admins can create, delete, and mark tasks as co
 1. Clone the repository:
 
 
-
+```
 git clone https://github.com/your-username/todo-app.git
-
+```
 
 2. Navigate to the project directory:
 
-
+```
 cd todo-app
-
+```
 
 3. Create a virtual environment (optional but recommended):
 
-```bash
+```
 python3 -m venv env
 source env/bin/activate  # On Windows, use `env\Scripts\activate`
 ```
 
 4. Install the required dependencies:
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 1. Run the Flask application:
 
-```bash
+```
 python app.py
 ```
 
