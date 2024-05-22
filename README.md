@@ -1,7 +1,7 @@
-```markdown
 # ToDo App
 
-A simple web application built with Flask that allows users to manage their tasks. The app includes user authentication and role-based access control, where admins can create, delete, and mark tasks as completed, while regular users can only view and mark tasks as completed.
+A simple web application built with Flask that allows users to manage their tasks. The app includes user authentication and 
+role-based access control, where admins can create, delete, and mark tasks as completed, while regular users can only view and mark tasks as completed.
 
 ## Features
 
@@ -22,15 +22,16 @@ A simple web application built with Flask that allows users to manage their task
 
 1. Clone the repository:
 
-```bash
+
+
 git clone https://github.com/your-username/todo-app.git
-```
+
 
 2. Navigate to the project directory:
 
-```bash
+
 cd todo-app
-```
+
 
 3. Create a virtual environment (optional but recommended):
 
